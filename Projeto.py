@@ -1,42 +1,57 @@
 banco_de_dados = []
 
+print("Bem vindo ao Newtask v1.0!\n")
+
 def criar_tarefa():
     tarefa = {}
     tarefa["Nome"] = input("Digite o nome da tarefa: ")
     tarefa["Descrição"] = input("Digite a descrição: ")
     tarefa["Categoria"] = input("Digite a categoria: ")
     tarefa["Prioridade"] = int(input("Digite a prioridade(1-3): "))
+    if tarefa["Prioridade"] < 1 or tarefa["Prioridade"] > 3:
+        print("Digite um número de 1 a 3. Tente novamente.")
+        return
     tarefa["Status"] = False
     banco_de_dados.append(tarefa)
-    print("Tarefa adicionada com sucesso!")
+    print("Tarefa adicionada com sucesso!\n")
+
 
 def listar_tarefa():
-    print(banco_de_dados)
-listar_tarefa()
+    print("Listando tarefas em ordem alfabética:")
+    for i, tarefa in enumerate(banco_de_dados):
+        print(f"Tarefa {i + 1}: {tarefa['Nome']}, Categoria: {tarefa['Categoria']}, Prioridade: {tarefa['Prioridade']}, Concluída: {tarefa['Status']}")
+
 
 def prioridade_tarefa():
     nova_lista = sorted(banco_de_dados, key=lambda x: x["Prioridade"])
-    print(nova_lista)
-prioridade_tarefa()
+    print("Tarefas Ordenadas por Prioridade:\n")
+    for i, tarefa in enumerate(nova_lista):
+        status = "Concluída" if tarefa["Status"] else "Pendente"
+        if nova_lista != []:
+            print(f"Tarefa {i + 1}. Nome: {tarefa['Nome']}, Descrição: {tarefa['Descrição']}, Categoria: {tarefa['Categoria']}, Prioridade: {tarefa['Prioridade']}, Status: {status}")
+
 
 def categoria_tarefa():
     nova_lista = sorted(banco_de_dados, key=lambda x: x["Categoria"])
-    print(nova_lista)
-categoria_tarefa()
+    print("Tarefas Ordenadas por Categoria:\n")
+    for i, tarefa in enumerate(nova_lista):
+        status = "Concluída" if tarefa["Status"] else "Pendente"
+        if nova_lista != []:
+            print(f"Tarefa {i + 1}. Nome: {tarefa['Nome']}, Descrição: {tarefa['Descrição']}, Categoria: {tarefa['Categoria']}, Prioridade: {tarefa['Prioridade']}, Status: {status}")
 
-# def concluir_tarefa():
 
+# def concluir_tarefa(): Concluir 15/10/2024
 
 
 while True:
-    print("Bem vindo ao task v1.0!")
+    print("\nEscolha uma das opções:\n")
     print("1 - Criar tarefa")
     print("2 - Listar tarefa")
     print("3 - Ordenar tarefas por Prioridade")
     print("4 - Ordenar tarefas por Categoria")
     print("5 - Marcar tarefa como concluída")
     print("6 - Apagar tarefa")
-    print("0 - Sair")
+    print("0 - Sair\n")
     op = int(input("Digite a opção: "))
     if op < 0 or op > 6:
         print("Opção inválida.")
