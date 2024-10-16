@@ -17,14 +17,14 @@ def criar_tarefa():
 
 
 def listar_tarefa():
-    print("Listando tarefas em ordem alfabética:")
+    print("Listando tarefas por ordem de entrada:\n")
     for i, tarefa in enumerate(banco_de_dados):
         print(f"Tarefa {i + 1}: {tarefa['Nome']}, Categoria: {tarefa['Categoria']}, Prioridade: {tarefa['Prioridade']}, Concluída: {tarefa['Status']}")
 
 
 def prioridade_tarefa():
     nova_lista = sorted(banco_de_dados, key=lambda x: x["Prioridade"])
-    print("Tarefas Ordenadas por Prioridade:\n")
+    print("Tarefas Ordenadas por prioridade:\n")
     for i, tarefa in enumerate(nova_lista):
         status = "Concluída" if tarefa["Status"] else "Pendente"
         if nova_lista != []:
@@ -40,7 +40,26 @@ def categoria_tarefa():
             print(f"Tarefa {i + 1}. Nome: {tarefa['Nome']}, Descrição: {tarefa['Descrição']}, Categoria: {tarefa['Categoria']}, Prioridade: {tarefa['Prioridade']}, Status: {status}")
 
 
-# def concluir_tarefa(): Concluir 15/10/2024
+def concluir_tarefa():
+    listar_tarefa()
+    indice = int(input("\nDigite o número da tarefa que você deseja concluir: "))
+    if 0 < indice <= len(banco_de_dados):
+        banco_de_dados[indice - 1]["Status"] = True
+        print(f"Tarefa {indice} concluída com sucesso!")
+    else:
+        print("Tarefa inexistente. Tente novamente")
+        return
+    
+
+def apagar_tarefa():
+    listar_tarefa()
+    indice = int(input("\nDigite o número da tarefa que você deseja apagar: "))
+    if 0 < indice <= len(banco_de_dados):
+        del banco_de_dados[indice - 1]
+        print(f"Tarefa {indice} removida com sucesso!")
+    else:
+        print("Tarefa inexistente. Tente novamente.")    
+        return
 
 
 while True:
@@ -49,7 +68,7 @@ while True:
     print("2 - Listar tarefa")
     print("3 - Ordenar tarefas por Prioridade")
     print("4 - Ordenar tarefas por Categoria")
-    print("5 - Marcar tarefa como concluída")
+    print("5 - Marcar tarefa como Concluída")
     print("6 - Apagar tarefa")
     print("0 - Sair\n")
     op = int(input("Digite a opção: "))
@@ -63,10 +82,10 @@ while True:
         prioridade_tarefa()
     elif op == 4:
         categoria_tarefa()
-    # elif op == 5:
-    #     concluir_tarefa()
-    # elif op == 6:
-    #     apagar_tarefa()
+    elif op == 5:
+        concluir_tarefa()
+    elif op == 6:
+        apagar_tarefa()
     elif op == 0:
         print("Fechando programa.")
         break
