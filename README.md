@@ -67,11 +67,4 @@ Caso o usuário insira uma opção inválida, o sistema exibe uma mensagem de er
 
 ---
 
-## Possíveis Melhorias
-- Adicionar persistência de dados, salvando as tarefas em um arquivo para que elas não sejam perdidas ao fechar o programa.
-- Melhorar a validação de entradas para evitar erros na inserção de categorias e descrições.
-- Incluir uma funcionalidade de edição de tarefas existentes.
-
----
-
 Este código é uma base sólida para um sistema simples de gerenciamento de tarefas, que pode ser expandido conforme as necessidades do usuário.
